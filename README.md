@@ -1,2 +1,3 @@
 # Retro Pong Game
- a classic remake of the  70's retro pong
+* a remake of the classic pnog game from the 70's
+
