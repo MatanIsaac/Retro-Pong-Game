@@ -7,25 +7,24 @@ Prerequisites
     A C++ compiler, such as Visual C++ or GCC
     raylib, which can be installed using vcpkg or by manually building and installing the library
 
-Building and Running the Game
+Running the Game
 
-To build and run the game, follow these steps:
+To run the game, follow these steps:
 
     Clone this repository to your local machine
-    Navigate to the project directory in a terminal or command prompt
-    Run the following command to build the game: make
-    Run the game by executing the generated executable file: ./game
+    Navigate to the project directory and go to bin\x64\Release
+    Run the Retro Pong.exe and Enjoy. 
 
 Playing the Game
 
-TODO: Describe the gameplay mechanics and controls
-Future Plans
+use the arrow keys - ←↑→↓ - to move the right paddle 
+use the WASD keys to move the left paddle 
 
-I am excited to continue learning and improving my skills in C++ and game development. Some ideas for future improvements to this project include:
+I am excited to continue learning and improving my skills in C++ and game development. Some ideas for future projects are:
 
-    Adding more levels and challenges
-    Implementing a scoring system
-    Adding more visual effects and animations
-    Incorporating sound and music
-
-I am open to suggestions and contributions, so feel free to open an issue or pull request if you have any ideas or feedback.
+    A Remake of the Classic Break-Out Game
+    A Remake of the Classic Tetris Game
+    and more to come!
+    
+As a beginner i am open to suggestions and contributions, so feel free to open an issue or pull request if you have any ideas or feedback.
+And also if you are a beginner / a person that would like to team-up for a collabration of some sort, hit me up, i'd be happy to learn and grow as a team! .
