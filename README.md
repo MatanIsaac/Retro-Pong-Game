@@ -4,16 +4,18 @@ a remake i made of the 70's classic retro pong
 Welcome to my first C++ game project! This project uses raylib, a simple and easy-to-use library for creating 2D games.
 Prerequisites
 
-    A C++ compiler, such as Visual C++ or GCC
+    A C++ compiler, such as Visual C++ or GCC 
     raylib, which can be installed using vcpkg or by manually building and installing the library
 
-Running the Game
+Running the Game / Building the game
 
-To run the game, follow these steps:
+To build the game, follow these steps:
 
     Clone this repository to your local machine
-    Navigate to the project directory and go to bin\x64\Release
-    Run the Retro Pong.exe and Enjoy. 
+    Navigate to Retro-Pong-Game\Retro Pong 
+    Open a terminal there and run this build command
+    g++ main.cpp -o program.exe -O2 -Wall -std=c++17 -I include/ -L lib/ -lraylib -lopengl -lgdi32-lwinmm
+
 
 Playing the Game
 
