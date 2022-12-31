@@ -14,7 +14,9 @@ To build the game, follow these steps:
     Clone this repository to your local machine
     Navigate to Retro-Pong-Game\Retro Pong 
     Open a terminal there and run this build command
-    g++ main.cpp -o program.exe -O2 -Wall -I include/ -L lib/ -lraylib -lopengl -lgdi32 -lwinmm
+    Replace "include" with your include path to raylib.h 
+    Replace "lib" with you lib path to raylib .lib
+    g++ RetroPong.cpp -o program.exe -O2 -Wall -I include/ -L lib/ -lraylib -lopengl -lgdi32 -lwinmm
 
 
 Playing the Game
