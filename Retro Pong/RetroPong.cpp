@@ -1,17 +1,17 @@
 
-#include "raylib.h"
+#include <raylib.h>
 
-#define ballColor { 221, 217, 218, 255}
-#define paddleColor { 120, 130, 122, 255}
-#define ScoreColor { 130, 121, 115, 255}
-#define winnerColor { 75, 77, 74, 255}
+static constexpr Color ballColor = { 221, 217, 218, 255 };
+static constexpr Color paddleColor = { 120, 130, 122, 255 };
+static constexpr Color ScoreColor = { 130, 121, 115, 255 };
+static constexpr Color winnerColor = { 75, 77, 74, 255 };
 
 class Ball
 {
 public:
     Ball() = default;
     
-    Ball(float posX, float posY, float speedX, float speedY, float radius)
+    Ball(const float& posX, const  float& posY, const float& speedX, const float& speedY, const float& radius)
         : x(posX), y(posY), speedX(speedX), speedY(speedY), radius(radius) {}
     
     // data members
@@ -32,7 +32,7 @@ class Paddle
 public:
 
     Paddle() = default;
-    Paddle(float posX, float posY,float speed, float width, float height)
+    Paddle(const float& posX, const float& posY, const float& speed, const float& width, const float& height)
         : x(posX), y(posY), speed(speed), width(width), height(height)  {}
 
     float x, y;
@@ -60,9 +60,9 @@ public:
 
     void Init();
     void ReInit(Ball& ball);
-    void Update(Ball& ball, Paddle& leftPaddle, Paddle& rightPaddle, Sound hitSound);
-    void Draw(Ball& ball, Paddle leftPaddle, Paddle rightPaddle);
-    void DeInit(Sound hitSound);
+    void Update(Ball& ball, Paddle& leftPaddle, Paddle& rightPaddle, const Sound& hitSound);
+    void Draw(Ball& ball,  Paddle& leftPaddle, Paddle& rightPaddle);
+    void DeInit(Sound& hitSound);
     
     bool gameOver = false;
     bool pause = false;
@@ -73,7 +73,6 @@ public:
 
 void Game::Init()
 {
-
     // Initialization
     const int screenWd = 800;
     const int screenHt = 600;
@@ -102,7 +101,7 @@ void Game::ReInit(Ball& ball)
     this->gameOver = false;
 }
 
-void Game::Update(Ball& ball, Paddle& leftPaddle, Paddle& rightPaddle, Sound hitSound)
+void Game::Update(Ball& ball, Paddle& leftPaddle, Paddle& rightPaddle, const Sound& hitSound)
 {
     // Update
     ball.x += ball.speedX * GetFrameTime();
@@ -204,7 +203,7 @@ void Game::Update(Ball& ball, Paddle& leftPaddle, Paddle& rightPaddle, Sound hit
     }
 }
 
-void Game::Draw(Ball& ball, Paddle leftPaddle, Paddle rightPaddle)
+void Game::Draw(Ball& ball, Paddle& leftPaddle, Paddle& rightPaddle)
 {
     // Draw 
     BeginDrawing();
@@ -233,7 +232,7 @@ void Game::Draw(Ball& ball, Paddle leftPaddle, Paddle rightPaddle)
     EndDrawing();
 }
 
-void Game::DeInit(Sound hitSound)
+void Game::DeInit(Sound& hitSound)
 {
     // De-Initialization
     StopSoundMulti();
@@ -251,7 +250,7 @@ int main(void)
     Sound hitSound = LoadSound("SFX/PongHIT.wav");
     
     // ball
-    Ball ball(GetScreenWidth() / 2.f, GetScreenHeight() / 2.f, 300, 300, 5);
+    Ball ball(GetScreenWidth() / 2.f, GetScreenHeight() / 2.f, 150, 150, 5);
 
     // Paddles
     Paddle leftPaddle(50, GetScreenHeight() / 2.f,500,10,100);
