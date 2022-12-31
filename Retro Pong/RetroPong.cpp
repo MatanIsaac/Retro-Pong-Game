@@ -227,7 +227,6 @@ void Game::Draw(Ball& ball, Paddle leftPaddle, Paddle rightPaddle)
     {
         int textWidth = MeasureText(winnerText, 60);
         DrawText(winnerText, GetScreenWidth() / 2 - textWidth / 2, GetScreenHeight() / 3 - 30, 60, winnerColor);
-        int textWidth2 = MeasureText("Press Enter To Restart The Game", 30);
         DrawText("Press Enter To Restart The Game", GetScreenWidth() / 2 - textWidth / 2, GetScreenHeight() / 1.5 - 30, 30, DARKGREEN);
     }
     
