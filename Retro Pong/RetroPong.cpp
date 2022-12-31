@@ -1,10 +1,12 @@
 
 #include <raylib.h>
 
-static constexpr Color ballColor = { 221, 217, 218, 255 };
-static constexpr Color paddleColor = { 120, 130, 122, 255 };
-static constexpr Color ScoreColor = { 130, 121, 115, 255 };
-static constexpr Color winnerColor = { 75, 77, 74, 255 };
+static constexpr Color ballColor = { 196, 192, 165, 255 };
+static constexpr Color paddleColor = { 40, 58, 66, 180 };
+static constexpr Color ScoreColor = { 63, 84, 61, 255 };
+static constexpr Color winnerColor = { 218,165,32, 155 };
+static constexpr Color EnterColor = { 84, 61, 61, 255 };
+static constexpr Color BGColor = { 28, 31, 28, 255 };
 
 class Ball
 {
@@ -15,9 +17,9 @@ public:
         : x(posX), y(posY), speedX(speedX), speedY(speedY), radius(radius) {}
     
     // data members
-    float x, y;
-    float speedX, speedY;
-    float radius;
+    float x = 0, y = 0;
+    float speedX = 0, speedY = 0;
+    float radius = 0;
 
     // member functions
     void Draw()
@@ -35,14 +37,14 @@ public:
     Paddle(const float& posX, const float& posY, const float& speed, const float& width, const float& height)
         : x(posX), y(posY), speed(speed), width(width), height(height)  {}
 
-    float x, y;
-    float speed;
-    float width, height;
+    float x = 0, y = 0;
+    float speed = 0;
+    float width = 0, height = 0;
     int score = 0;
 
     Rectangle GetRect()
     {
-        return Rectangle{ x - width / 2, y - height / 2, 10, 100 };
+        return Rectangle{ x - width * 0.5f, y - height * 0.5f, 10, 100 };
     }
 
     void Draw()
@@ -95,8 +97,8 @@ void Game::ReInit(Ball& ball)
     this->rScore = 0;
     this->lScore = 0;
     ball.radius = 5;
-    ball.x = GetScreenWidth() / 2.f;
-    ball.y = GetScreenHeight() / 2.f;
+    ball.x = GetScreenWidth() * 0.5f;
+    ball.y = GetScreenHeight() * 0.5f;
     this->pause = false;
     this->gameOver = false;
 }
@@ -148,11 +150,11 @@ void Game::Update(Ball& ball, Paddle& leftPaddle, Paddle& rightPaddle, const Sou
         }
 
         // paddles - wall collision
-        const int minPaddleY = 0 + rightPaddle.height / 2 + 25;
+        const int minPaddleY = 0 + rightPaddle.height * 0.5f + 15;
         if (rightPaddle.y <= minPaddleY) rightPaddle.y = minPaddleY;
         if (leftPaddle.y <= minPaddleY) leftPaddle.y = minPaddleY;
         
-        const int maxPaddleY = GetScreenHeight() - rightPaddle.height / 2 - 25; 
+        const int maxPaddleY = GetScreenHeight() - rightPaddle.height * 0.5f - 15;
         if (rightPaddle.y >= maxPaddleY) rightPaddle.y = maxPaddleY;  
         if (leftPaddle.y >= maxPaddleY) leftPaddle.y = maxPaddleY;  
 
@@ -182,8 +184,8 @@ void Game::Update(Ball& ball, Paddle& leftPaddle, Paddle& rightPaddle, const Sou
 
         if (pause)
         {
-            ball.x = GetScreenWidth() / 2.f;
-            ball.y = GetScreenHeight() / 2.f;
+            ball.x = GetScreenWidth() * 0.5f;
+            ball.y = GetScreenHeight() * 0.5f;
         }
 
         if (IsKeyPressed(KEY_ENTER))
@@ -207,26 +209,26 @@ void Game::Draw(Ball& ball, Paddle& leftPaddle, Paddle& rightPaddle)
 {
     // Draw 
     BeginDrawing();
-    ClearBackground(BLACK);
+    ClearBackground(BGColor);
         
     ball.Draw();
     leftPaddle.Draw();
     rightPaddle.Draw();
     
-    DrawText(TextFormat("Score: [%i]", lScore), leftPaddle.height, 10, 30, DARKGREEN);
-    DrawText(TextFormat("Score: [%i]", rScore), GetScreenWidth() - 240, 10, 30, DARKGREEN);
+    DrawText(TextFormat("Score: [%i]", lScore), leftPaddle.height, 10, 30, ScoreColor);
+    DrawText(TextFormat("Score: [%i]", rScore), GetScreenWidth() - 240, 10, 30, ScoreColor);
 
     if (pause && !gameOver)
     {
         int textWidth = MeasureText("Press Enter to Continue..", 40);
-        DrawText("Press Enter to Continue..", GetScreenWidth() / 2 - textWidth / 2, GetScreenHeight() / 2.5 - 30, 40, DARKGREEN);
+        DrawText("Press Enter to Continue..", GetScreenWidth() * 0.5f - textWidth * 0.5f, GetScreenHeight() * 0.3f - 30, 40, EnterColor);
     }
 
     if (winnerText)
     {
         int textWidth = MeasureText(winnerText, 60);
         DrawText(winnerText, GetScreenWidth() / 2 - textWidth / 2, GetScreenHeight() / 3 - 30, 60, winnerColor);
-        DrawText("Press Enter To Restart The Game", GetScreenWidth() / 2 - textWidth / 2, GetScreenHeight() / 1.5 - 30, 30, DARKGREEN);
+        DrawText("Press Enter To Restart The Game", GetScreenWidth() * 0.5f - textWidth * 0.5f, GetScreenHeight() * 0.5f - 30, 30, EnterColor);
     }
     
     EndDrawing();
@@ -250,11 +252,11 @@ int main(void)
     Sound hitSound = LoadSound("SFX/PongHIT.wav");
     
     // ball
-    Ball ball(GetScreenWidth() / 2.f, GetScreenHeight() / 2.f, 150, 150, 5);
+    Ball ball(GetScreenWidth() / 2.f, GetScreenHeight() / 2.f, 250, 250, 5);
 
     // Paddles
-    Paddle leftPaddle(50, GetScreenHeight() / 2.f,500,10,100);
-    Paddle rightPaddle(GetScreenWidth() - 50.f, GetScreenHeight() / 2.f,500,10,100);
+    Paddle leftPaddle(50, GetScreenHeight() * 0.5f,500,10,100);
+    Paddle rightPaddle(GetScreenWidth() - 50.f, GetScreenHeight() * 0.5f,500,10,100);
    
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
