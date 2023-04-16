@@ -24,11 +24,7 @@ Playing the Game
 use the arrow keys - ←↑→↓ - to move the right paddle 
 use the WASD keys to move the left paddle 
 
-I am excited to continue learning and improving my skills in C++ and game development. Some ideas for future projects are:
+I am excited to continue learning and improving my skills in C++ and game development.
 
-    A Remake of the Classic Break-Out Game
-    A Remake of the Classic Tetris Game
-    and more to come!
-    
 As a beginner i am open to suggestions and contributions, so feel free to open an issue or pull request if you have any ideas or feedback.
 And also if you are a beginner / a person that would like to team-up for a collabration of some sort, hit me up, i'd be happy to learn and grow as a team! .
